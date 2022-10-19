@@ -1,0 +1,7 @@
+GST_ARGUS: NvArgusCameraSrc: Setting Exposure Time Range : 11000000  210000000
+GST_ARGUS: NvArgusCameraSrc: Setting Gain Range : 16 18
+GST_ARGUS: Invalid Gain Range Input
+Launching the QR data extraction script
+[]
+start working on  nvarguscamerasrc  sensor_id=0 awblock=false wbmode=1 tnr-mode=2 tnr-strength = 1  exposuretimerange="11000000  210000000" gainrange="16 18" ! video/x-raw(memory:NVMM), width=1920, height=1080, format=(string)NV12, framerate=(fraction)30/1 ! nvvidconv  ! video/x-raw, format=(string)BGRx ! videoconvert ! video/x-raw, format=(string)BGR ! appsink  saving in  data/
+GPS stopped

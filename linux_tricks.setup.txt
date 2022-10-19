@@ -1,0 +1,49 @@
+1- Make the script runnable when the jetson boots and starts :
+    nano ~/.bashrc 
+    add at the end of the file : sh path_to_shell_file/run.sh
+    
+
+2- Start bash on startup to run the script
+    Press the Super key (windows key).
+    Type "Startup Applications"
+    Click on the Startup Applications option
+    Click "Add"
+    In the "name" field, type Terminal
+    In the "command" field, type gnome-terminal
+    Click "Add"
+    
+    
+3- Disable sleep mode on the jetson :
+  sudo systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target
+  #if you want enable it again use the following command : sudo systemctl unmask sleep.target suspend.target hibernate.target hybrid-sleep.target
+
+4- Remove password authentification for login so the code can start with all the external hardware connected (TODO : find a better way to do it) :
+    http://www.ubuntugeek.com/how-to-disable-password-prompts-in-ubuntu.html
+    
+5- Disable PIN : 
+
+#list modems
+
+mmcli -L
+
+#get path to sim
+
+mmcli -m "MODEM-NUMBER"
+
+#disable PIN
+
+mmcli -i "PATH-TO-SIM" --pin="PIN" --disable-pin 
+
+
+6 - Setup the APN of the modem :
+
+sudo minicom -D ttyUSB2
+
+AT+CGDCONT = 1,"IP","orange"
+
+or replace orange by apn name
+
+reboot the modem
+AT + CFUN = 1, 1
+
+reboot system

@@ -1,0 +1,40 @@
+
+#install python3.7
+sudo apt-get autoremove python3.7
+sudo apt-get update
+sudo apt-get upgrade -y
+sudo apt-get install build-essential
+sudo apt-get install zlib1g-dev libsqlite3-dev tk-dev
+sudo apt-get install libssl-dev openssl
+sudo apt-get install libffi-dev libbz2-dev libc6-dev
+sudo apt-get install libgdbm-dev libncursesw5-dev 
+sudo apt-get install libreadline-gplv2-dev
+
+wget https://www.python.org/ftp/python/3.7.1/Python-3.7.1.tar.xz
+tar xvf Python-3.7.1.tar.xz
+cd Python-3.7.1
+
+./configure --enable-shared --enable-optimizations --with-ensurepip=yes CFLAGS="-I$HOME/openssl/include" LDFLAGS="-L$HOME/openssl/lib"
+sudo make altinstall
+
+echo 'export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib:/usr/local/lib/' >> ~/.bashrc
+
+#reload bashrc
+source ~/.bashrc
+
+
+
+
+
+
+# add lib to path
+sudo ldconfig /usr/local/lib 
+
+#change default python version
+sudo rm /usr/bin/python3
+sudo ln -s /usr/local/bin/python3.7 /usr/bin/python3
+
+
+
+#reset python in usr/bin
+sudo apt-get install --reinstall python-minimal

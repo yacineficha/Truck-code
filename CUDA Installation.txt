@@ -1,0 +1,28 @@
+# run the following commands
+
+
+wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/sbsa/cuda-ubuntu1804.pin
+‍
+sudo mv cuda-ubuntu1804.pin /etc/apt/preferences.d/cuda-repository-pin-600
+‍
+wget http://developer.download.nvidia.com/compute/cuda/11.0.2/local_installers/cuda-repo-ubuntu1804-11-0-local_11.0.2-450.51.05-1_arm64.deb
+‍
+sudo dpkg -i cuda-repo-ubuntu1804-11-0-local_11.0.2-450.51.05-1_arm64.deb
+‍
+sudo apt-key add /var/cuda-repo-ubuntu1804-11-0-local/7fa2af80.pub
+sudo apt-get update
+‍
+sudo apt-get -y install cuda
+
+sudo apt-get -o dpkg::Options::="--force-overwrite" install --fix-broken
+
+
+#verify installation using :
+
+dkpg -l | grep cuda
+
+#export path
+export PATH=/usr/local/cuda-11.0/bin${PATH:+:${PATH}}
+
+
+#now you should be able to run the nvcc command

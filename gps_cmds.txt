@@ -1,0 +1,2 @@
+send AT+CGPS=1
+send AT+CGPSINFO
