@@ -1,0 +1,29 @@
+Setup the Jetson Nano GPS module (GNSS 4 click) :
+
+
+#First, the hardware setup :
+Jetson Nano      → GPS module    
+J41 Pin 8 (TXD)  → Cable RXD 
+J41 Pin 10 (RXD) → Cable TXD 
+J4 Pin 6 (GND)   → Cable GND 
+
+#Software setup : 
+
+sudo apt-get install python3-serial
+
+#The two steps next are still being tested
+#Run getty on background
+sudo /sbin/getty -a ubuntu -L 9600 ttyTHS1 &
+
+#Stop and Disable the nvgetty service. This starts a console on ttyTHS1.
+systemctl stop nvgetty
+systemctl disable nvgetty
+
+#Get the code from this link to test the setup (Will make our version ASAP) :
+
+https://github.com/raspberrypilearning/piGPS/blob/master/pigps/piGPS.py
+
+#change self._dev to self._dev = '/dev/ttyTHS1' and run the code, it should output time and gps coords
+
+
+
